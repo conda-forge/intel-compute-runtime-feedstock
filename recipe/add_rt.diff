@@ -34,16 +34,3 @@ diff -ru unit_tests/linux/CMakeLists.txt unit_tests/linux/CMakeLists.txt
  
    set_property(TARGET igdrcl_${target_name} APPEND_STRING PROPERTY COMPILE_FLAGS ${ASAN_FLAGS})
    target_include_directories(igdrcl_${target_name} PRIVATE
-diff -ru unit_tests/tbx/CMakeLists.txt unit_tests/tbx/CMakeLists.txt
---- unit_tests/tbx/CMakeLists.txt   2019-09-18 16:12:11.000000000 -0500
-+++ unit_tests/tbx/CMakeLists.txt  2019-10-02 02:01:15.829504810 -0500
-@@ -15,7 +15,7 @@
-   $<TARGET_OBJECTS:igdrcl_libult>
- )
- 
--target_link_libraries(igdrcl_tbx_tests ${NEO_MOCKABLE_LIB_NAME} igdrcl_mocks gmock-gtest ${IGDRCL_EXTRA_LIBS})
-+target_link_libraries(igdrcl_tbx_tests ${NEO_MOCKABLE_LIB_NAME} igdrcl_mocks gmock-gtest ${IGDRCL_EXTRA_LIBS} -lrt)
- 
- if(WIN32)
-   target_include_directories(igdrcl_tbx_tests PRIVATE
-
