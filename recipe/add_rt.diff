@@ -1,36 +1,11 @@
-diff -ru unit_tests/aub_tests/CMakeLists.txt unit_tests/aub_tests/CMakeLists.txt
---- unit_tests/aub_tests/CMakeLists.txt     2019-09-18 16:12:11.000000000 -0500
-+++ unit_tests/aub_tests/CMakeLists.txt    2019-10-02 01:59:54.676099184 -0500
-@@ -64,7 +64,7 @@
- target_link_libraries(igdrcl_aub_tests igdrcl_mocks)
- target_link_libraries(igdrcl_aub_tests ${NEO_MOCKABLE_LIB_NAME})
- target_link_libraries(igdrcl_aub_tests igdrcl_mocks)
--target_link_libraries(igdrcl_aub_tests gmock-gtest ${IGDRCL_EXTRA_LIBS})
-+target_link_libraries(igdrcl_aub_tests gmock-gtest ${IGDRCL_EXTRA_LIBS} -lrt)
+--- unit_tests/CMakeLists.txt       2020-02-22 02:31:34.726330772 -0600
++++ unit_tests/CMakeLists.txt   2020-02-22 02:30:33.905294797 -0600
+@@ -36,7 +36,7 @@                                                                                                                                                     
+ endfunction()                                                                                                                                                        
+                                                                                                                                                                      
+ ADD_SUPPORTED_TEST_PRODUCT_FAMILIES_DEFINITION()                                                                                                                     
+-link_libraries(${ASAN_LIBS} ${TSAN_LIBS})                                                                                                                            
++link_libraries(${ASAN_LIBS} ${TSAN_LIBS} -lrt)
  
- target_include_directories(igdrcl_aub_tests BEFORE PRIVATE ${IGDRCL_SOURCE_DIR}/unit_tests/gen_common${BRANCH_DIR_SUFFIX})
- 
-diff -ru unit_tests/CMakeLists.txt unit_tests/CMakeLists.txt
---- unit_tests/CMakeLists.txt       2019-09-18 16:12:11.000000000 -0500
-+++ unit_tests/CMakeLists.txt      2019-10-02 01:56:40.216745561 -0500
-@@ -131,7 +131,7 @@
- endif()
- 
- target_link_libraries(igdrcl_tests ${NEO_MOCKABLE_LIB_NAME})
--target_link_libraries(igdrcl_tests igdrcl_mocks)
-+target_link_libraries(igdrcl_tests igdrcl_mocks -lrt)
- 
- option(SHOW_VERBOSE_UTESTS_RESULTS "Use the default/verbose test output" OFF)
- 
-diff -ru unit_tests/linux/CMakeLists.txt unit_tests/linux/CMakeLists.txt
---- unit_tests/linux/CMakeLists.txt 2019-09-18 16:12:11.000000000 -0500
-+++ unit_tests/linux/CMakeLists.txt        2019-10-02 01:57:58.370088895 -0500
-@@ -50,7 +50,7 @@
-     $<TARGET_OBJECTS:igdrcl_libult>
-     $<TARGET_OBJECTS:igdrcl_libult_cs>
-   )
--  target_link_libraries(igdrcl_${target_name} ${NEO_MOCKABLE_LIB_NAME} igdrcl_mocks ${IGDRCL_EXTRA_LIBS} gmock-gtest)
-+  target_link_libraries(igdrcl_${target_name} ${NEO_MOCKABLE_LIB_NAME} igdrcl_mocks ${IGDRCL_EXTRA_LIBS} gmock-gtest -lrt)
- 
-   set_property(TARGET igdrcl_${target_name} APPEND_STRING PROPERTY COMPILE_FLAGS ${ASAN_FLAGS})
-   target_include_directories(igdrcl_${target_name} PRIVATE
+ add_custom_target(unit_tests)
+ add_custom_target(prepare_test_kernels)
