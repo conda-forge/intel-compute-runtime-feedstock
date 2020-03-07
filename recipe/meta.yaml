@@ -8,7 +8,6 @@ source:
   url: https://github.com/intel/compute-runtime/archive/{{ version }}.tar.gz
   sha256: 26ac5e2f175e5aa53bed322d4f996b4218621e4cc4e3c00a6874224dc3b9c8f2
   patches:
-    - add_rt.diff
     - install_icd.diff
 
 build:
