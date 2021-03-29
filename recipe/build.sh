@@ -11,6 +11,7 @@ cmake \
     -DIGC_DIR=$PREFIX \
     -DGMM_SOURCE_DIR=$PREFIX \
     -DTSAN_LIBS="-lrt" \
+    -DOCL_ICD_VENDORDIR=$PREFIX/etc/OpenCL/vendors \
     ..
 
 make -j${CPU_COUNT} VERBOSE=1
