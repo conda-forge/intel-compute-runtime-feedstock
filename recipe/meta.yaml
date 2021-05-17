@@ -1,4 +1,4 @@
-{% set version = "21.18.19737" %}
+{% set version = "21.19.19792" %}
 
 package:
   name: intel-compute-runtime
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/intel/compute-runtime/archive/{{ version }}.tar.gz
-  sha256: c4b8fe0fb94a7ccb2dfcf038b63600d2ca3c7bbdc162e2929ac541a91c140c3a
+  sha256: dcfb90c3587789c7a8d6c1a6c75440b852bc425bb5d91656084cc259f055dcd6
   patches:
     - gh412.patch
 
