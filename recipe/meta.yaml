@@ -7,8 +7,6 @@ package:
 source:
   url: https://github.com/intel/compute-runtime/archive/{{ version }}.tar.gz
   sha256: 5e8dd1e740e04298563ae3e8b73375d9b441a9c6bcd10a8f4d867d101d8dd26b
-  patches:
-    - gh412.patch
 
 build:
   number: 0
