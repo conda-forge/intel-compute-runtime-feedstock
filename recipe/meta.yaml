@@ -1,4 +1,4 @@
-{% set version = "21.26.20194" %}
+{% set version = "24.35.30872.22" %}
 
 package:
   name: intel-compute-runtime
@@ -6,9 +6,7 @@ package:
 
 source:
   url: https://github.com/intel/compute-runtime/archive/{{ version }}.tar.gz
-  sha256: 6bcc4490056ed19daf855522dad27477895592f904c9d826ef8e74b43a510fae
-  patches:
-    - gh412.patch
+  sha256: 924781eba2268aaf3f2f5286006e219f8adff9b985a327ccf6acc39b7a00acc5
 
 build:
   number: 0
@@ -17,6 +15,7 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - cmake
     - make
     - pkg-config
@@ -24,8 +23,9 @@ requirements:
     - intel-gmmlib
     - intel-graphics-compiler
   run:
-    - {{ pin_compatible("intel-gmmlib", exact=True) }}
-    - {{ pin_compatible("intel-graphics-compiler", exact=True) }}
+    # TODO: remove, once merged:
+    #   https://github.com/conda-forge/intel-gmmlib-feedstock/pull/38
+    - {{ pin_compatible("intel-gmmlib", max_pin='x') }}
 
 test:
   commands:
