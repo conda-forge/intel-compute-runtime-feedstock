@@ -1,7 +1,8 @@
+{% set name = "intel-compute-runtime" %}
 {% set version = "24.35.30872.22" %}
 
 package:
-  name: intel-compute-runtime
+  name: {{ name }}
   version: {{ version }}
 
 source:
