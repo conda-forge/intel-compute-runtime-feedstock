@@ -1,19 +1,19 @@
 #!/bin/bash
 
-mkdir build
-cd build
-
-cmake \
+cmake ${CMAKE_ARGS} \
+    -G Ninja \
+    -DCMAKE_VERBOSE_MAKEFILE=TRUE \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_INSTALL_LIBDIR=lib \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_BUILD_TYPE=Release \
     -DIGC_DIR=$PREFIX \
     -DGMM_SOURCE_DIR=$PREFIX \
+    -DNEO_SKIP_UNIT_TESTS=1 \
     -DTSAN_LIBS="-lrt" \
     -DOCL_ICD_VENDORDIR=$PREFIX/etc/OpenCL/vendors \
-    ..
+    -S . \
+    -B ./build
 
-make -j${CPU_COUNT} VERBOSE=1
-make install
-
+cmake --build ./build
+cmake --build ./build --target install

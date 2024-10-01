@@ -11,13 +11,19 @@ source:
 build:
   number: 0
   skip: true  # [not linux]
+  ignore_run_exports_from:
+    # TODO: is it necessary to ignore run exports from these packages?
+    #   Perhaps it is a soft dependency
+    - intel-graphics-compiler
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - cmake
-    - make
+    - ninja
     - pkg-config
   host:
     - intel-gmmlib
@@ -36,7 +42,7 @@ about:
   home: https://github.com/intel/compute-runtime
   license: MIT
   license_family: MIT
-  license_file: LICENSE
+  license_file: LICENSE.md
   summary: Intel(R) Graphics Compute Runtime for OpenCL(TM)
 
 extra:
