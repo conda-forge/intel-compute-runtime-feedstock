@@ -10,12 +10,8 @@ source:
   sha256: dc5e1174d075d80cf31bd58935cc5bdef12ad31af09ebcd5b268682f0d8b8f34
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not linux]
-  ignore_run_exports_from:
-    # TODO: is it necessary to ignore run exports from these packages?
-    #   Perhaps it is a soft dependency
-    - intel-graphics-compiler
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin="x") }}
 
@@ -28,6 +24,9 @@ requirements:
     - pkg-config
   host:
     - intel-gmmlib
+    # intel-graphics-compiler will be added to runtime dependency and
+    #   there is no hard links to this package. However it is required for the
+    #   compute runtime. Do no ignore run time dependencies from this package.
     - intel-graphics-compiler
   run:
     # TODO: remove, once merged:
