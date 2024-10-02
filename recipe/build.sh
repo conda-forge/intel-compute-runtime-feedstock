@@ -8,9 +8,7 @@ cmake ${CMAKE_ARGS} \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_BUILD_TYPE=Release \
     -DIGC_DIR=$PREFIX \
-    -DGMM_SOURCE_DIR=$PREFIX \
     -DNEO_SKIP_UNIT_TESTS=1 \
-    -DTSAN_LIBS="-lrt" \
     -DOCL_ICD_VENDORDIR=$PREFIX/etc/OpenCL/vendors \
     -S . \
     -B ./build
