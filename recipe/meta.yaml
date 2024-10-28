@@ -1,5 +1,5 @@
 {% set name = "intel-compute-runtime" %}
-{% set version = "24.39.31294.17" %}
+{% set version = "24.39.31294.18" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/intel/compute-runtime/archive/{{ version }}.tar.gz
-  sha256: 25dbe537ba1884877529418145a2ad9f2222c78d85e813a351710310fa4ad3f1
+  sha256: 0963a6745c30eca4584e1fe7e0ea6def7afa973cca876069d5a28cfedb58b0bb
 
 build:
   number: 0
