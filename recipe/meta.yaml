@@ -1,8 +1,7 @@
-{% set name = "intel-compute-runtime" %}
 {% set version = "26.18.38308.1" %}
 
 package:
-  name: {{ name }}
+  name: intel-compute-runtime
   version: {{ version }}
 
 source:
@@ -28,10 +27,6 @@ requirements:
     #   there is no hard links to this package. However it is required for the
     #   compute runtime. Do no ignore run time dependencies from this package.
     - intel-graphics-compiler
-  run:
-    # TODO: remove, once merged:
-    #   https://github.com/conda-forge/intel-gmmlib-feedstock/pull/38
-    - {{ pin_compatible("intel-gmmlib", max_pin='x') }}
 
 test:
   commands:
